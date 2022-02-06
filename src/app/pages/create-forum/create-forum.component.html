@@ -1,0 +1,71 @@
+<form [formGroup]="form" *ngIf="users">
+    <h2>{{forum.uuid ? 'Editar' : 'Criar'}} Fórum</h2>
+
+    <mat-form-field>
+        <mat-label>Nome</mat-label>
+        <input formControlName="name" matInput>
+    </mat-form-field>
+
+
+    <h4>Permissões</h4>
+
+    <!-- <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" [colSpan]="1"></th>
+                <th scope="col" [colSpan]="4">Tópico</th>
+                <th scope="col" [colSpan]="3">Post</th>
+            </tr>
+
+            <tr class="table-header-row">
+                <th scope="col">Papel</th>
+                <th scope="col">Ler</th>
+                <th scope="col">Escrever</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Excluir</th>
+                <th scope="col">Escrever</th>
+                <th scope="col">Editar</th>
+                <th scope="col">Excluir</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let role of roles" formGroupName="permissions">
+                <ng-container [formArrayName]="role.id">
+                    <td>
+                        <p> {{role.name}}</p>
+                    </td>
+                    <td><input type="checkbox" formControlName="read_topic"></td>
+                    <td><input type="checkbox" formControlName="write_topic"></td>
+                    <td><input type="checkbox" formControlName="edit_topic"></td>
+                    <td><input type="checkbox" formControlName="delete_topic"></td>
+
+                    <td><input type="checkbox" formControlName="write_post"></td>
+                    <td><input type="checkbox" formControlName="edit_post"></td>
+                    <td><input type="checkbox" formControlName="delete_post"></td>
+                </ng-container>
+            </tr>
+        </tbody>
+    </table> -->
+
+    <mat-form-field appearance="fill">
+        <mat-label>Selecionar moderador</mat-label>
+        <input matInput placeholder="Nome" formControlName="users" [matAutocomplete]="auto" #usern>
+        
+        <mat-autocomplete autoActiveFirstOption #auto="matAutocomplete"
+            (optionSelected)="addModerator($event.option.value)" [displayWith]="getDisplayName">
+
+            <mat-option *ngFor="let user of filteredUsers | async" [value]="user">
+                {{user['username']}}
+            </mat-option>
+        </mat-autocomplete>
+    </mat-form-field>
+    <div><label>Moderadores</label>
+        <p *ngFor="let moderator of form.get('moderators').value">{{moderator['username']}} <button class="btn btn-primary" (click)="removeModerator(moderator)">Remover</button></p>
+    </div>
+
+    <acl-table formControlName="acls" [roles]="roles"></acl-table>
+
+
+    <button (click)="createForum()" class="btn btn-primary">{{forum.uuid ? 'Salvar' : 'Criar'}} Fórum</button>
+
+</form>

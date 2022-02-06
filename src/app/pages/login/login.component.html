@@ -1,0 +1,23 @@
+<form [formGroup]="formRegister">
+    <label>E-mail</label>
+    <input formControlName="email">
+    <br>
+    <label>Usuário</label>
+    <input formControlName="username">
+    <br>
+    <label>Senha</label>
+    <input formControlName="password">
+    <br>
+
+    <button (click)="registerUser()">Registrar</button>
+</form>
+
+<form [formGroup]="formLogin">
+    <label>E-mail</label>
+    <input formControlName="email">
+    <br>
+    <label>Senha</label>
+    <input formControlName="password">
+    <br>
+    <button (click)="login()">Login</button>
+</form>

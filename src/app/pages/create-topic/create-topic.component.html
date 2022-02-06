@@ -1,0 +1,8 @@
+<form [formGroup]="form" class="create-topic">
+    <label>Nome do Tópico</label>
+    <input formControlName="name">
+
+    <create-post formControlName="content"></create-post>
+
+    <button (click)="createTopic()">Enviar</button>
+</form>

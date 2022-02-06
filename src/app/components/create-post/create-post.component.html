@@ -1,0 +1,4 @@
+<form [formGroup]="form">
+    <angular-editor formControlName="content" [config]="config"></angular-editor>
+    <div>{{form.get('content').value.length}}/10000</div>
+</form>

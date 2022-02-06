@@ -1,0 +1,33 @@
+<ng-container *ngIf="topic">
+    <h2 class="pt-4 mb-3">{{topic.name}}</h2>
+
+    <ng-container *ngFor="let p of topic.posts">
+        <post [post]="p"></post>
+
+        <div class="d-flex w-100 justify-content-end mb-2">
+            <button class="btn btn-primary m-1" (click)="editPost(p)"
+                *ngIf="(acl.indexOf('edit_post') > -1 && p.owner.uuid == app.user.uuid) || acl.indexOf('edit_any_post') > -1">Editar</button>
+            <button class="btn btn-primary m-1" (click)="removePost(p)"
+                *ngIf="(acl.indexOf('delete_post') > -1 && p.owner.uuid == app.user.uuid) || acl.indexOf('delete_any_post') > -1">Excluir </button>
+        </div>
+
+    </ng-container>
+
+
+
+    <ng-container *ngIf="acl.indexOf('write_post') > -1">
+        <h3>{{editMode ? 'Editar' : 'Adicionar'}} comentário</h3>
+        <form [formGroup]="form">
+            <create-post formControlName="content"></create-post>
+        </form>
+        <div class="d-flex flex-row justify-content-end gap-2">
+            <div *ngIf="editMode"><button class="btn btn-primary" (click)="editMode = false">Cancelar</button></div>
+            <div><button class="btn btn-primary" (click)="createPost();editMode = false">{{editMode ? 'Salvar Post' :
+                    'Criar Post'}}</button></div>
+        </div>
+
+    </ng-container>
+
+
+
+</ng-container>

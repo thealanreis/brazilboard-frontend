@@ -1,0 +1,11 @@
+<div *ngIf="forum">
+    <h2 class="pt-4 mb-3">{{forum.name}}</h2>
+    <div *ngFor="let t of forum.topics">
+        <topic class="cell" [topic]="t" ></topic>
+        <button [routerLink]="['/forum', forum.uuid, 'topico', t.uuid, 'editar-topico']">Editar Tópico</button>
+    </div>
+</div>
+
+<br>
+<br>
+<button class="btn btn-primary" [routerLink]="'criar-topico'" *ngIf="acl && acl.indexOf('write_topic') > -1">Criar Tópico</button>    

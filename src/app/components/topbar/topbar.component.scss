@@ -1,0 +1,56 @@
+.topbar{
+    background-color: #555;
+}
+
+.wrapper{
+    max-width: 94rem;
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+.menu a{
+    color: white;
+    font-weight: 600;
+    font-size: large;
+    padding: 1rem;
+}
+
+.title{
+    color: white;
+}
+
+
+
+
+
+
+
+
+
+
+// .slideshow{
+//     height: 20rem;
+//     background-color: rgb(150, 150, 150);
+//     position: relative;
+//     overflow: hidden;
+// }
+
+// .images {
+//     background: url('/assets/img/bg-bombcrypto.png');
+//     background-size: contain;
+//     position: absolute;
+//     left: 0;
+//     top: 0;
+//     height: 100%;
+//     width: 300%;
+//     animation: slideshow 160s linear infinite;
+//     opacity: 0.3;
+//   }
+  
+//   @keyframes slideshow {
+//     0%    { left: 0; }
+//     100%  { left: -200%; }
+//   }

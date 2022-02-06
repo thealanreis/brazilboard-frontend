@@ -1,0 +1,61 @@
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+html {
+    font-size: 62.5%; // 1rem = 10px
+   
+    // @include breakpoint(medium) {
+    //   font-size: 56.25%;  // 1rem = 9px
+    // }
+   
+    // @include breakpoint(small) {
+    //   font-size: 50%;  // 1rem = 8px
+    // }
+   }
+
+body{
+    min-height: 100vh;
+    background-color: #ddd;
+}
+
+button, p, th, td, label, div{
+    font-size: 1.3rem;
+}
+
+button{
+    font-size: 140% !important;
+}
+
+label{
+    font-size: 110%;
+}
+
+.content-page {
+    max-width: 945px;
+    margin:auto;
+    min-height: 100vh;
+    padding-left:1.5rem;
+    padding-right: 1.5rem;
+    background-color: white;
+    padding-bottom: 3rem;
+}
+
+a:link {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+a:visited {
+    text-decoration: inherit;
+    color: inherit;
+}
+
+.cell {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: rgba(241, 241, 241, 0.904);
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
