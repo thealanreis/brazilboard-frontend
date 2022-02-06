@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from "@angular/router";
+import { ActivatedRouteSnapshot, Router } from "@angular/router";
 import { BACKEND } from "../common/endpoints";
 import { GenericService } from "./generic.service";
 
@@ -10,7 +10,6 @@ import { GenericService } from "./generic.service";
 export class TopicService extends GenericService {
 
     constructor(router: Router, http: HttpClient) {
-
         super(router, http, {});
     }
 

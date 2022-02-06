@@ -9,7 +9,6 @@ export interface URLS {
     [OTHER: string]: string;
 }
 
-
 export class GenericService {
 
     constructor(protected router: Router, protected http: HttpClient, protected urls: URLS) { }
