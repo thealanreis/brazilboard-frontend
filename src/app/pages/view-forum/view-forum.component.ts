@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Forum } from 'src/app/models/forum';
-import { Topic } from 'src/app/models/topic';
-import { TopicService } from 'src/app/services/topic.service';
 
 @Component({
   selector: 'view-forum',
@@ -18,14 +16,6 @@ export class ViewForumComponent implements OnInit {
   ngOnInit(): void {
     this.forum = this.route.snapshot.data['r']['items'];
     this.acl = this.route.snapshot.data['r']['acl'];
-    // this.topicService.operation('GET_TOPICS', null).subscribe(
-    //   r => {
-    //     if (r) {
-    //       this.forum = r['items'];
-    //       this.topics = r['items']['topics']
-    //     }
-    //   }
-    // )
   }
 
 }

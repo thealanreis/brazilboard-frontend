@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { Topic } from 'src/app/models/topic';
 import { TopicService } from 'src/app/services/topic.service';
 
@@ -17,14 +17,13 @@ export class CreateTopicComponent implements OnInit {
   constructor(private formBuilder: FormBuilder, private topicService: TopicService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    let path = this.route.routeConfig.path;
 
+    let path = this.route.routeConfig.path;
     if (path == 'forum/:fuuid/criar-topico') this.topic = new Topic();
     else {
       this.topic = this.route.snapshot.data['r']['items'];
       this.postContent = this.topic.posts[0].content;
     }
-
     this.initializeForm();
   }
 

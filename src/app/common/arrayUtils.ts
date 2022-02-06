@@ -7,7 +7,6 @@ export function removeMultipleFromArray(list: Array<any>, small_list: Array<any>
                 break;
             }
         }
-        
     }
 }
 
@@ -19,8 +18,6 @@ export function removeFromArray(list: Array<any>, object: any, property: string)
             break;
         }
     }
-
-
 }
 
 export function sortArray(list: Array<any>) {

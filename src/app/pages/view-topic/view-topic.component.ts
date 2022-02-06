@@ -15,7 +15,6 @@ export class ViewTopicComponent implements OnInit {
   acl = []
   editMode = false;
   topic: Topic;
-  newPost: string;
   form: FormGroup;
   constructor(private route: ActivatedRoute, private postService: PostService, private formBuilder: FormBuilder, public app: AppService) { }
 
@@ -39,7 +38,6 @@ export class ViewTopicComponent implements OnInit {
         this.acl = r['acl'];
       }
     );
-    console.log(this.app.user);
   }
 
   createPost() {
@@ -47,13 +45,11 @@ export class ViewTopicComponent implements OnInit {
     let operation = this.editMode ? 'UPDATE_POST' : 'CREATE_POST';
     this.postService.operation(operation, post).subscribe(
       r => {
-        console.log(r);
         this.form.get('content').setValue('');
         this.getPosts();
       }
     )
   }
-
 
   editPost(p) {
     this.editMode = true;
@@ -73,13 +69,6 @@ export class ViewTopicComponent implements OnInit {
         }
       }
     )
-  }
-
-  savePost() {
-    // this.editMode = false;
-    // this.postService.operation('UPDATE_POST', this.form.getRawValue()).subscribe(
-    //   r => { this.post.content = r['content'] }
-    // )
   }
 
 }

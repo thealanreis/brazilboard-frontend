@@ -10,14 +10,13 @@ import { GenericService } from "./generic.service";
 export class ForumService extends GenericService {
 
     constructor(router: Router, http: HttpClient) {
-
         super(router, http, {});
     }
 
     override operation(operation, payload = null, route: ActivatedRouteSnapshot = null) {
 
         let forumUuid = ''
-
+        
         if (route) forumUuid = route.params['fuuid'] // Resolver
         else forumUuid = this.router.routerState.snapshot.root.children[0].params['fuuid'];
 

@@ -16,10 +16,7 @@ export class AppService {
     }
 
     initialize(){
-        // return this.http.get<any>(LOGGED_IN_URL).pipe(tap(
-        //     r => {if (r) this.user = r; console.log(r)}
-        // ));
-
+        
         return this.userService.operation('LOGGED_IN').pipe(tap(
             r => {if(r) this.user = r['items']}
         ))

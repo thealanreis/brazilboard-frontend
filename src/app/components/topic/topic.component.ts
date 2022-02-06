@@ -11,7 +11,6 @@ export class TopicComponent implements OnInit {
   @Input() topic: Topic;
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

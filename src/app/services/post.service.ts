@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { ActivatedRoute, ActivatedRouteSnapshot, Router } from "@angular/router";
+import { ActivatedRouteSnapshot, Router } from "@angular/router";
 import { BACKEND } from "../common/endpoints";
 import { GenericService } from "./generic.service";
 
@@ -10,7 +10,6 @@ import { GenericService } from "./generic.service";
 export class PostService extends GenericService {
 
     constructor(router: Router, http: HttpClient) {
-
         super(router, http, {});
     }
 
@@ -32,7 +31,6 @@ export class PostService extends GenericService {
         }
 
         let url = this.getPostUrl(operation, forumUuid, topicUuid, postUuid);
-
         if (!payload) return this.callBackend(this.http.get(url));
         else return this.callBackend(this.http.post(url, payload));
     }

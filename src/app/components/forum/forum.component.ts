@@ -11,8 +11,6 @@ export class ForumComponent implements OnInit {
   @Input() forum: Forum;
   constructor() { }
 
-  ngOnInit(): void {
-    console.log(this.forum)
-  }
+  ngOnInit(): void {}
 
 }

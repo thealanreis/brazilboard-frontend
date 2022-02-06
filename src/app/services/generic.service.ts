@@ -1,5 +1,4 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
@@ -7,11 +6,6 @@ import { environment } from "src/environments/environment";
 
 
 export interface URLS {
-    CREATE?: string;
-    GET?: string;
-    GET_ONE?: string;
-    DELETE?: string;
-    UPDATE?: string;
     [OTHER: string]: string;
 }
 

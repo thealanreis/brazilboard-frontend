@@ -14,9 +14,10 @@ export class GenericResolver implements Resolve<any>{
     constructor(private topicService: TopicService, private postService: PostService, private forumServie: ForumService, private userService: UserService) { }
 
     resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+    
         let url = route.routeConfig.path; //forum/:fuuid/topico/:tuuid
-
         switch (url) {
+
             case 'criar-forum':
                 return forkJoin([
                     this.userService.operation('GET_USERS'),
@@ -41,9 +42,7 @@ export class GenericResolver implements Resolve<any>{
 
             default:
                 return of('fu');
-
         }
-
     }
 
 }

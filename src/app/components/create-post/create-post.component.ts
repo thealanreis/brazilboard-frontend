@@ -23,12 +23,8 @@ export class CreatePostComponent implements OnInit, ControlValueAccessor {
   constructor(private formBuilder: FormBuilder) { }
 
   onChange = (obj: string) => {};
-  writeValue(obj: string): void {
-    this.form.get('content').setValue(obj);
-  }
-  registerOnChange(fn: any): void {
-    this.onChange = fn;
-  }
+  writeValue(obj: string): void {this.form.get('content').setValue(obj);}
+  registerOnChange(fn: any): void {this.onChange = fn;}
   registerOnTouched(fn: any): void {}
   setDisabledState?(isDisabled: boolean): void {}
 
