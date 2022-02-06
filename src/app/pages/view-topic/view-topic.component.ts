@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { getResolverData } from 'src/app/common/route-utils';
 import { Topic } from 'src/app/models/topic';
 import { AppService } from 'src/app/services/app.service';
 import { PostService } from 'src/app/services/post.service';
@@ -19,9 +20,9 @@ export class ViewTopicComponent implements OnInit {
   constructor(private route: ActivatedRoute, private postService: PostService, private formBuilder: FormBuilder, public app: AppService) { }
 
   ngOnInit(): void {
-    this.topic = this.route.snapshot.data['r']['items'];
-    this.acl = this.route.snapshot.data['r']['acl'];
-      this.initializeForm();
+    this.topic = getResolverData(this.route, 'GET_POSTS');
+    this.acl = getResolverData(this.route, 'GET_POSTS', true);
+    this.initializeForm();
   }
 
   initializeForm() {

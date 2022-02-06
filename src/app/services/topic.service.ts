@@ -1,6 +1,6 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import { ActivatedRouteSnapshot, Router } from "@angular/router";
+import {  Router } from "@angular/router";
 import { BACKEND } from "../common/endpoints";
 import { GenericService } from "./generic.service";
 
@@ -10,11 +10,16 @@ import { GenericService } from "./generic.service";
 export class TopicService extends GenericService {
 
     constructor(router: Router, http: HttpClient) {
-        super(router, http, {});
+        super(router, http, {
+            'GET_TOPIC': '',
+            'GET_TOPICS': '',
+            'CREATE_TOPICS': '',
+            'UPDATE_TOPICS': '',
+            'DELETE_TOPICS': '',
+        });
     }
 
-    override operation(operation, payload = null, route: ActivatedRouteSnapshot = null) {
-
+    override getUrl(OPERATION, route) {
         let forumUuid = '';
         let topicUuid = '';
 
@@ -27,12 +32,6 @@ export class TopicService extends GenericService {
             topicUuid = this.router.routerState.snapshot.root.children[0].params['tuuid'];
         }
 
-        let url = this.getTopicUrl(operation, forumUuid, topicUuid);
-        if (!payload) return this.callBackend(this.http.get(url));
-        else return this.callBackend(this.http.post(url, payload));
-    }
-
-    getTopicUrl(OPERATION, forumUuid, topicUuid) {
         switch (OPERATION) {
             case 'GET_TOPIC':
                 return `${BACKEND}/forum/${forumUuid}/topic/${topicUuid}`;

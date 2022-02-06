@@ -44,7 +44,7 @@ export class AclTableComponent implements ControlValueAccessor, AfterViewInit, O
 
     let forms = []
     this.acls.forEach(
-      acl => {
+      (acl, index) => {
         let fg = this.formBuilder.group({});
         fg.addControl('read_topic', new FormControl(acl.read_topic));
         fg.addControl('write_topic', new FormControl(acl.write_topic));
@@ -54,7 +54,7 @@ export class AclTableComponent implements ControlValueAccessor, AfterViewInit, O
         fg.addControl('edit_post', new FormControl(acl.edit_post));
         fg.addControl('delete_post', new FormControl(acl.delete_post));
         fg.addControl('id', new FormControl(acl.id)); // Usado na edição do fórum
-        fg.addControl('role_id', new FormControl(acl.role_id)); // Usado na criação do fórum
+        fg.addControl('role_id', new FormControl(this.roles[index].id)); // Usado na criação do fórum
         forms.push(fg);
       }
     );

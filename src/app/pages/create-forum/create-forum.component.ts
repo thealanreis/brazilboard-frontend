@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
 import { map, Observable, startWith } from 'rxjs';
 import { removeFromArray, removeMultipleFromArray, sortArray } from 'src/app/common/arrayUtils';
+import { getResolverData } from 'src/app/common/route-utils';
 import { Forum } from 'src/app/models/forum';
 import { Role } from 'src/app/models/role';
 import { User } from 'src/app/models/user';
@@ -28,11 +29,11 @@ export class CreateForumComponent implements OnInit {
   ngOnInit(): void {
 
     let path = this.route.snapshot.url[0].path;
-    this.users = this.route.snapshot.data['r'][0]['items'];
-    this.roles = this.route.snapshot.data['r'][1]['items'];
+    this.users = getResolverData(this.route, 'GET_USERS');
+    this.roles = getResolverData(this.route, 'GET_ROLES');
 
     if (path.startsWith('editar-forum')) {
-      this.forum = this.route.snapshot.data['r'][2]['items'];
+      this.forum = getResolverData(this.route, 'GET_FORUM');
       this.moderators = this.forum.moderators;
       removeMultipleFromArray(this.users, this.moderators, 'id');
     }

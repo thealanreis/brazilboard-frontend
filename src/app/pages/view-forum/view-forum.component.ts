@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { getResolverData } from 'src/app/common/route-utils';
 import { Forum } from 'src/app/models/forum';
 
 @Component({
@@ -14,8 +15,8 @@ export class ViewForumComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.forum = this.route.snapshot.data['r']['items'];
-    this.acl = this.route.snapshot.data['r']['acl'];
+    this.forum = getResolverData(this.route, 'GET_TOPICS');
+    this.acl = getResolverData(this.route, 'GET_TOPICS', true);
   }
 
 }

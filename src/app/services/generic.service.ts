@@ -11,11 +11,13 @@ export interface URLS {
 
 export class GenericService {
 
-    constructor(protected router: Router, protected http: HttpClient, protected urls: URLS) { }
+    constructor(protected router: Router, protected http: HttpClient, public urls: URLS) { }
 
-    operation(operation, payload = null,) {
-        if (!payload) return this.callBackend(this.http.get(this.urls[operation]));
-        else return this.callBackend(this.http.post(this.urls[operation], payload));
+    operation(operation, payload = null, route=null) {
+        let url = this.urls[operation] ? this.urls[operation] : this.getUrl(operation, route);
+
+        if (!payload) return this.callBackend(this.http.get(url));
+        else return this.callBackend(this.http.post(url, payload));
     }
 
     callBackend(observable: Observable<any>) {
@@ -36,6 +38,10 @@ export class GenericService {
             this.router.navigate(['/']);
             // this.alertService.errorMSg('Não autorizado');
         }
+    }
+
+    getUrl(operation, route?){
+        return this.urls[operation];
     }
 
 }

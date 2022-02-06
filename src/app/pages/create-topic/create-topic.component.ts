@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { getResolverData } from 'src/app/common/route-utils';
 import { Topic } from 'src/app/models/topic';
 import { TopicService } from 'src/app/services/topic.service';
 
@@ -21,7 +22,7 @@ export class CreateTopicComponent implements OnInit {
     let path = this.route.routeConfig.path;
     if (path == 'forum/:fuuid/criar-topico') this.topic = new Topic();
     else {
-      this.topic = this.route.snapshot.data['r']['items'];
+      this.topic = getResolverData(this.route, 'GET_TOPIC');
       this.postContent = this.topic.posts[0].content;
     }
     this.initializeForm();

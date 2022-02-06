@@ -10,23 +10,21 @@ import { GenericService } from "./generic.service";
 export class ForumService extends GenericService {
 
     constructor(router: Router, http: HttpClient) {
-        super(router, http, {});
+        super(router, http, {
+            'GET_FORUM': '',
+            'GET_FORUMS': '',
+            'CREATE_FORUM': '',
+            'UPDATE_FORUM': '',
+            'DELETE_FORUM': '',
+        });
     }
 
-    override operation(operation, payload = null, route: ActivatedRouteSnapshot = null) {
+    override getUrl(OPERATION, route) {
 
-        let forumUuid = ''
-        
+        let forumUuid = '';
         if (route) forumUuid = route.params['fuuid'] // Resolver
         else forumUuid = this.router.routerState.snapshot.root.children[0].params['fuuid'];
 
-        let url = this.getForumUrl(operation, forumUuid);
-        if (!payload) return this.callBackend(this.http.get(url));
-        else return this.callBackend(this.http.post(url, payload));
-    }
-
-
-    getForumUrl(OPERATION, forumUuid) {
         switch (OPERATION) {
 
             case 'GET_FORUMS':

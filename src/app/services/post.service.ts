@@ -10,11 +10,16 @@ import { GenericService } from "./generic.service";
 export class PostService extends GenericService {
 
     constructor(router: Router, http: HttpClient) {
-        super(router, http, {});
+        super(router, http, {
+            'GET_POST': '',
+            'GET_POSTS': '',
+            'CREATE_POST': '',
+            'UPDATE_POST': '',
+            'DELETE_POST': ''
+        });
     }
 
-    override operation(operation, payload = null, route: ActivatedRouteSnapshot = null) {
-
+    override getUrl(OPERATION, route) {
         let forumUuid = ''
         let topicUuid = ''
         let postUuid = ''
@@ -30,12 +35,6 @@ export class PostService extends GenericService {
             postUuid = this.router.routerState.snapshot.root.children[0].params['puuid']
         }
 
-        let url = this.getPostUrl(operation, forumUuid, topicUuid, postUuid);
-        if (!payload) return this.callBackend(this.http.get(url));
-        else return this.callBackend(this.http.post(url, payload));
-    }
-
-    getPostUrl(OPERATION, forumUuid, topicUuid, postUuid) {
         switch (OPERATION) {
             case 'GET_POST':
                 return `${BACKEND}/forum/${forumUuid}/topic/${topicUuid}/post/${postUuid}`;

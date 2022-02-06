@@ -29,3 +29,11 @@ export function sortArray(list: Array<any>) {
         }
     );
 }
+
+export function findInArray(list: Array<any>, property: string, value: string) {
+    for (const [index, element] of list.entries()) {
+        if (element[property] == value) {
+            return element
+        }
+    }
+}
