@@ -13,9 +13,9 @@ export class GenericService {
 
     constructor(protected router: Router, protected http: HttpClient, public urls: URLS) { }
 
-    operation(operation, payload = null, route=null) {
-        let url = this.urls[operation] ? this.urls[operation] : this.getUrl(operation, route);
+    operation(operation, payload = null, route = null) {
 
+        let url = this.replaceParameters(this.urls[operation], route);
         if (!payload) return this.callBackend(this.http.get(url));
         else return this.callBackend(this.http.post(url, payload));
     }
@@ -40,8 +40,27 @@ export class GenericService {
         }
     }
 
-    getUrl(operation, route?){
-        return this.urls[operation];
+
+    replaceParameters(url, route) {
+
+        let regexp = /\[(.*?)\]/g; // Se existem parâmetros entre parenthesis
+        let matches = url.match(regexp);
+        if (matches) {
+            let params = {}
+            
+            if (route) params = route.params; // Parametros da URL vem do resolver
+            else params = this.router.routerState.snapshot.root.children[0].params; // Parametros da URL vem do Router no componente
+
+            matches.forEach(
+                match => {
+                    let cleanMatch = match.replace(/[\[\]]/g, ''); // Remove os parentesis para encontrar o objeto correspondente no dict
+                    url = url.replace(match, params[cleanMatch]);
+                }
+            );
+        }
+        return url;
     }
+
+    
 
 }

@@ -2,7 +2,8 @@
     <h2 class="pt-4 mb-3">{{forum.name}}</h2>
     <div *ngFor="let t of forum.topics">
         <topic class="cell" [topic]="t" ></topic>
-        <button [routerLink]="['/forum', forum.uuid, 'topico', t.uuid, 'editar-topico']">Editar Tópico</button>
+        <button [routerLink]="['/forum', forum.uuid, 'topico', t.uuid, 'editar-topico']"
+        *ngIf="(t.owner.uuid == app.user.uuid && acl.indexOf('edit_topic') > -1 ) || acl.indexOf('edit_any_topic') > 1">Editar Tópico</button>
     </div>
 </div>
 
