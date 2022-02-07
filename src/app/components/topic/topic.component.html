@@ -1,4 +1,23 @@
-<a class="w-100" [routerLink]="['topico' , topic.uuid]">
-    <h4>{{topic.name}}</h4>
-    <div>Criado por {{topic.owner.username}} em {{topic.created}}</div>
+<a class="w-100" [routerLink]="['topico', topic.uuid]">
+    <div class="container-fluid">
+        <div class="row align-items-center">
+            <div class="col-sm-8">
+                <h3 class="text-primary">{{ 1 | lorem}}</h3>
+                <h5 class="text-secondary"><div>Criado por {{topic.owner.username}} em {{topic.created}}</div></h5>
+                <!-- {{forum.created}} -->
+                <!-- {{forum.owner.username}} -->
+            </div>
+
+            <div class="col-sm-2">
+                <h4>{{100 | random}} Visualizações</h4>
+                <h4>{{100 | random}} Posts </h4>
+            </div>
+
+            <div class="col-sm-2">
+                <h4 class="topic-title">{{2| lorem}}</h4>
+                <div>Por Alan</div>
+
+            </div>
+        </div>
+    </div>
 </a>

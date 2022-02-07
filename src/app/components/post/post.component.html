@@ -1,16 +1,14 @@
-<div>
-    <div class="post" >
-        <p [innerHTML]="post.content"></p>
+<div class="post">
+    <!-- <p [innerHTML]="post.content"></p> -->
+    <p> {{10 | lorem}}></p>
 
-        <div class="post-info">
-            <div class="avatar">
+    <div class="post-info">
+        <div class="avatar">
 
-            </div>
-            <div class="user">
-                {{post.owner.username}}
-                <br>{{post.created}}
-            </div>
+        </div>
+        <div class="user">
+            {{post.owner.username}}
+            <br>{{post.created}}
         </div>
     </div>
 </div>
-

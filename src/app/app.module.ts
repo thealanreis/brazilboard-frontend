@@ -24,11 +24,13 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AclTableComponent } from './common/acl-table/acl-table.component';
-import { GenericService } from './services/generic.service';
 import { TopicService } from './services/topic.service';
 import { ForumService } from './services/forum.service';
 import { PostService } from './services/post.service';
 import { UserService } from './services/user.service';
+import { LoremPipe } from './common/pipe-lorem';
+import { RandomPipe } from './common/pipe-random';
+import { FooterComponent } from './components/footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +47,9 @@ import { UserService } from './services/user.service';
     CreatePostComponent,
     TopbarComponent,
     AclTableComponent,
+    LoremPipe,
+    RandomPipe,
+    FooterComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +62,7 @@ import { UserService } from './services/user.service';
     BrowserAnimationsModule,
     MatFormFieldModule,
     MatInputModule,
-    MatAutocompleteModule
+    MatAutocompleteModule,
   ],
   providers: [
     {provide: APP_INITIALIZER, useFactory: initializeApp, multi: true, deps: [AppService]},

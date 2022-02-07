@@ -1,5 +1,22 @@
 <a class="w-100" [routerLink]="['forum', forum.uuid]">
-    <h3>{{forum.name}}</h3>
-    {{forum.created}}
-    {{forum.owner.username}}
+    <div class="container-fluid ">
+        <div class="row align-items-center">
+            <div class="col-sm-8">
+                <h3 class="text-primary">{{forum.name}}</h3>
+                <h5 class="text-secondary">{{2 | lorem }}</h5>
+                <!-- {{forum.created}} -->
+                <!-- {{forum.owner.username}} -->
+            </div>
+
+            <div class="col-sm-2">
+                <h4>{{100 | random}} tópicos</h4>
+                <h4>{{100 | random}} posts</h4>
+            </div>
+
+            <div class="col-sm-2">
+                <h4 class="topic-title">{{2| lorem}}</h4>
+                <div>Por Alan</div>
+            </div>
+        </div>
+    </div>
 </a>
