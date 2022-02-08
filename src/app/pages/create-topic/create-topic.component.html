@@ -1,8 +1,12 @@
 <form [formGroup]="form" class="create-topic">
-    <label>Nome do Tópico</label>
-    <input formControlName="name">
+    <h2 class="pt-4 mb-3">Criar Tópico</h2>
+    <mat-form-field>
+        <mat-label>Nome do Tópico</mat-label>
+        <input formControlName="name" matInput>
+    </mat-form-field>
+    
 
     <create-post formControlName="content"></create-post>
 
-    <button (click)="createTopic()">Enviar</button>
+    <button (click)="createTopic()" class="btn btn-primary mt-4 mb-2">Criar</button>
 </form>

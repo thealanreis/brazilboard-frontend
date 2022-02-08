@@ -1,5 +1,12 @@
 <div *ngIf="forum">
-    <h2 class="pt-4 mb-3">{{forum.name}}</h2>
+    <h2 class=" mb-3">{{forum.name}}</h2>
+
+    <div class="text-end">
+        <button class="btn btn-primary mt-2 mb-2" [routerLink]="'criar-topico'"
+            *ngIf="acl && acl.indexOf('write_topic') > -1">Criar
+            Tópico</button>
+    </div>
+
     <div class="row cell-header container-fluid">
         <h4 class="col-8 text-secondary">Nome</h4>
         <h4 class="col-2 text-secondary">Estatísticas</h4>
@@ -14,5 +21,3 @@
 
 <br>
 <br>
-<button class="btn btn-primary" [routerLink]="'criar-topico'" *ngIf="acl && acl.indexOf('write_topic') > -1">Criar
-    Tópico</button>

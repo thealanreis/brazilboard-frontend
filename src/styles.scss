@@ -2,91 +2,102 @@
 
 html {
     font-size: 62.5%; // 1rem = 10px
-   
+
     // @include breakpoint(medium) {
     //   font-size: 56.25%;  // 1rem = 9px
     // }
-   
+
     // @include breakpoint(small) {
     //   font-size: 50%;  // 1rem = 8px
     // }
-   }
+}
 
-body{
+body {
     min-height: 100vh;
     background-color: #ddd;
 }
 
-button, p, th, td, label, div{
+input,
+textarea {
+    font-size: 1.5rem !important;
+}
+
+button,
+p,
+th,
+td,
+label,
+div {
     font-size: 1.3rem;
 }
 
-button{
+button {
     font-size: 140% !important;
 }
 
-label{
+label {
     font-size: 110%;
 }
 
-$color-primary : #0d6efd;
+$color-primary: #0d6efd;
 $color-lightgray: #eeeeee;
 $color-gray: #aaa;
 $color-heavygray: #555;
 
 .content-page {
     max-width: 945px;
-    margin:auto;
+    margin: auto;
     min-height: 100vh;
-    padding-left:1.5rem;
+    padding-top: 3rem;
+    padding-left: 1.5rem;
     padding-right: 1.5rem;
     background-color: white;
     padding-bottom: 3rem;
 }
-
-a:link {
-    text-decoration: inherit;
-    color: inherit;
-}
-
+a,
+a:link,
 a:visited {
-    text-decoration: inherit;
+    text-decoration: none;
     color: inherit;
 }
 
-.cell:last-child{
+.cell:last-child {
     border: none;
 }
 
-.cell{
+.cell {
     // background-color: rgb(245, 245, 245);
     width: 100%;
     display: flex;
-    padding: 1.5rem 1rem 1.5rem 1rem ;
+    padding: 1.5rem 1rem 1.5rem 1rem;
     text-decoration: none;
     border-bottom: 1px solid #ddd;
 }
 
-.cell:hover{
+.cell:hover {
     background-color: rgb(250, 250, 250);
 }
 
-.cell-header{
+.cell-header {
     // background-color: rgb(245, 245, 245);
     width: 100%;
     display: flex;
     flex-direction: row;
     border-bottom: 1px solid #ddd;
-    padding: 1rem ;
+    padding: 1rem;
     padding-left: 2rem;
     text-decoration: none;
 }
 
 .angular-editor-textarea:focus-within {
-     outline: none !important; 
-     border: 2px solid $color-primary !important;
+    outline: none !important;
+    border: 2px solid $color-primary !important;
 }
 
-.angular-editor-toolbar button{
+.angular-editor-toolbar button {
     color: $color-heavygray;
+}
+
+.pointer {
+    cursor: pointer;
 }

@@ -1,5 +1,5 @@
 <ng-container *ngIf="topic">
-    <h2 class="pt-4 mb-3">{{topic.name}}</h2>
+    <h2 class="mb-3">{{topic.name}}</h2>
 
     <div >
         <post class="mb-3 w-100"[post]="p" *ngFor="let p of topic.posts"></post>
@@ -10,10 +10,7 @@
             <button class="btn btn-primary m-1" (click)="removePost(p)"
                 *ngIf="(acl.indexOf('delete_post') > -1 && p.owner.uuid == app.user.uuid) || acl.indexOf('delete_any_post') > -1">Excluir </button>
         </div> -->
-
     </div>
-
-
 
     <ng-container *ngIf="acl.indexOf('write_post') > -1">
         <h3>{{editMode ? 'Editar' : 'Adicionar'}} comentário</h3>

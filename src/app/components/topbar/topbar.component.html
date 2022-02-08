@@ -3,8 +3,10 @@
         <div><h1 class="title">BRAZILBOARD</h1></div>
         <div class="menu">
             <a [routerLink]="['']">Home</a>
-            <a [routerLink]="['login']">Login</a>
+            <a (click)="openLogin()" class="pointer"  *ngIf="!app.user">Login</a>
+            <a [routerLink]="['meu-perfil']"  *ngIf="app.user">Meu Perfil</a>
             <a [routerLink]="['criar-forum']">ACP</a>
+            <a  *ngIf="app.user" (click)="logout()" class="pointer">Logout</a>
         </div>
     </div>
 </div>

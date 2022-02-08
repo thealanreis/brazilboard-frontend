@@ -1,0 +1,17 @@
+<h2>Meu Perfil</h2>
+<form [formGroup]="form">
+    <div class="d-flex flex-column gap-1">
+        <mat-form-field>
+            <mat-label>Usuário</mat-label>
+            <input matInput formControlName="username">
+        </mat-form-field>
+        <mat-form-field>
+            <mat-label>E-mail</mat-label>
+            <input matInput formControlName="email" type="email">
+        </mat-form-field>
+        <mat-label>Assinatura</mat-label>
+        <angular-editor formControlName="signature" [config]="config"></angular-editor>
+
+        <button class="btn btn-primary" (click)="saveMyProfile()">Salvar</button>
+    </div>
+</form>

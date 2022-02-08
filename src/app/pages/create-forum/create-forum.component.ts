@@ -7,8 +7,8 @@ import { getResolverData } from 'src/app/common/route-utils';
 import { Forum } from 'src/app/models/forum';
 import { Role } from 'src/app/models/role';
 import { User } from 'src/app/models/user';
-import { ForumService } from 'src/app/services/forum.service';
-import { UserService } from 'src/app/services/user.service';
+import { GenericService } from 'src/app/services/generic.service';
+
 
 @Component({
   selector: 'app-create-forum',
@@ -24,7 +24,7 @@ export class CreateForumComponent implements OnInit {
   forum: Forum;
   filteredUsers: Observable<any>; //Necessário para o componente de filtro de usuário
 
-  constructor(private formBuilder: FormBuilder, private forumService: ForumService, private userService: UserService, private route: ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder, private backend: GenericService, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
 
@@ -65,7 +65,7 @@ export class CreateForumComponent implements OnInit {
     let path = this.route.snapshot.url[0].path;
     let operation = path.startsWith('editar-forum') ? 'UPDATE_FORUM' : 'CREATE_FORUM'
     let forum = this.form.getRawValue();
-    this.forumService.operation(operation, forum).subscribe(
+    this.backend.operation(operation, forum).subscribe(
       r => console.log(r)
     );
   }

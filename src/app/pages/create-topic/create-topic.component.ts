@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { getResolverData } from 'src/app/common/route-utils';
 import { Topic } from 'src/app/models/topic';
-import { TopicService } from 'src/app/services/topic.service';
+import { GenericService } from 'src/app/services/generic.service';
 
 @Component({
   selector: 'create-topic',
@@ -15,7 +15,7 @@ export class CreateTopicComponent implements OnInit {
   form: FormGroup;
   postContent: string = '';
   topic: Topic;
-  constructor(private formBuilder: FormBuilder, private topicService: TopicService, private route: ActivatedRoute) { }
+  constructor(private formBuilder: FormBuilder, private backend: GenericService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit(): void {
 
@@ -39,8 +39,10 @@ export class CreateTopicComponent implements OnInit {
     let path = this.route.routeConfig.path;
     let operation = path == 'forum/:fuuid/criar-topico' ? 'CREATE_TOPIC' : 'UPDATE_TOPIC';
     let topic = this.form.getRawValue();
-    this.topicService.operation(operation, topic).subscribe(
-      r => console.log(r)
+    this.backend.operation(operation, topic).subscribe(
+      r => {
+        if(r) this.router.navigate(['forum', this.route.snapshot.params['fuuid']])
+      }
     )
   }
 

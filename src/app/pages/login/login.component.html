@@ -1,23 +1,39 @@
-<form [formGroup]="formRegister">
-    <label>E-mail</label>
-    <input formControlName="email">
-    <br>
-    <label>Usuário</label>
-    <input formControlName="username">
-    <br>
-    <label>Senha</label>
-    <input formControlName="password">
-    <br>
+<mat-tab-group mat-align-tabs="start" class="container">
+    <mat-tab label="Login">
+        <form [formGroup]="formLogin" class="d-flex flex-column">
+            <mat-form-field class="p-2">
+                <mat-label>E-mail</mat-label>
+                <input formControlName="email" matInput>
+            </mat-form-field>
 
-    <button (click)="registerUser()">Registrar</button>
-</form>
+            <mat-form-field class="p-2">
+                <mat-label>Senha</mat-label>
+                <input formControlName="password" matInput>
+            </mat-form-field>
+            <button class="btn btn-primary" (click)="login()">Login</button>
+        </form>
+    </mat-tab>
 
-<form [formGroup]="formLogin">
-    <label>E-mail</label>
-    <input formControlName="email">
-    <br>
-    <label>Senha</label>
-    <input formControlName="password">
-    <br>
-    <button (click)="login()">Login</button>
-</form>
+    <mat-tab label="Registrar">
+        <form [formGroup]="formRegister" class="d-flex flex-column">
+
+            <mat-form-field class="p-2">
+                <mat-label>E-mail</mat-label>
+                <input formControlName="email" matInput>
+            </mat-form-field>
+
+            <mat-form-field class="p-2">
+                <mat-label>Usuário</mat-label>
+                <input formControlName="username" matInput>
+            </mat-form-field>
+
+            <mat-form-field class="p-2">
+                <mat-label>Senha</mat-label>
+                <input formControlName="password" matInput>
+            </mat-form-field>
+
+            <button class="btn btn-primary" (click)="registerUser()">Registrar</button>
+        </form>
+    </mat-tab>
+
+</mat-tab-group>

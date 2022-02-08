@@ -24,13 +24,12 @@ import {MatFormFieldModule} from '@angular/material/form-field'
 import {MatInputModule} from '@angular/material/input';
 import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import { AclTableComponent } from './common/acl-table/acl-table.component';
-import { TopicService } from './services/topic.service';
-import { ForumService } from './services/forum.service';
-import { PostService } from './services/post.service';
-import { UserService } from './services/user.service';
 import { LoremPipe } from './common/pipe-lorem';
 import { RandomPipe } from './common/pipe-random';
 import { FooterComponent } from './components/footer/footer.component';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatDialogModule} from '@angular/material/dialog';
+import { MyProfileComponent } from './pages/my-profile/my-profile.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +48,8 @@ import { FooterComponent } from './components/footer/footer.component';
     AclTableComponent,
     LoremPipe,
     RandomPipe,
-    FooterComponent
+    FooterComponent,
+    MyProfileComponent
   ],
   imports: [
     BrowserModule,
@@ -63,13 +63,15 @@ import { FooterComponent } from './components/footer/footer.component';
     MatFormFieldModule,
     MatInputModule,
     MatAutocompleteModule,
+    MatTabsModule,
+    MatDialogModule
   ],
   providers: [
     {provide: APP_INITIALIZER, useFactory: initializeApp, multi: true, deps: [AppService]},
-    {provide: 'GenericService', useClass: TopicService, multi: true },
-    {provide: 'GenericService', useClass: ForumService, multi: true },
-    {provide: 'GenericService', useClass: PostService, multi: true },
-    {provide: 'GenericService', useClass: UserService, multi: true },
+    // {provide: 'GenericService', useClass: TopicService, multi: true },
+    // {provide: 'GenericService', useClass: ForumService, multi: true },
+    // {provide: 'GenericService', useClass: PostService, multi: true },
+    // {provide: 'GenericService', useClass: UserService, multi: true },
   ],
   bootstrap: [AppComponent]
 })

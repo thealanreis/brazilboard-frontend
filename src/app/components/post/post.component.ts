@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Post } from 'src/app/models/post';
 import { AppService } from 'src/app/services/app.service';
-import { PostService } from 'src/app/services/post.service';
+import { GenericService } from 'src/app/services/generic.service';
 
 @Component({
   selector: 'post',
@@ -14,7 +14,7 @@ export class PostComponent implements OnInit {
   form: FormGroup;
   @Input() post: Post;
 
-  constructor(private formBuilder: FormBuilder, private postService: PostService, public app: AppService) { }
+  constructor(private formBuilder: FormBuilder, private postService: GenericService, public app: AppService) { }
 
   ngOnInit(): void {
     this.initializeForm();

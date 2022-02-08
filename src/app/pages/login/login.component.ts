@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
 import { AppService } from 'src/app/services/app.service';
-import { UserService } from 'src/app/services/user.service';
+import { GenericService } from 'src/app/services/generic.service';
 
 @Component({
   selector: 'app-login',
@@ -12,7 +13,7 @@ export class LoginComponent implements OnInit {
 
   formRegister : FormGroup;
   formLogin : FormGroup;
-  constructor(private formBuilder: FormBuilder, private userService: UserService, private app: AppService) { }
+  constructor(private formBuilder: FormBuilder, private backend: GenericService, private app: AppService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.initializeForm();
@@ -33,16 +34,17 @@ export class LoginComponent implements OnInit {
 
   registerUser(){
     let user = this.formRegister.getRawValue();
-    this.userService.operation('REGISTER', user).subscribe(
-      r => console.log(r)
+    this.backend.operation('REGISTER', user).subscribe(
+      r => {if(r)this.dialog.closeAll()}
     )
   }
 
   login(){
     let user = this.formLogin.getRawValue();
-    this.userService.operation('LOGIN', user).subscribe(
+    this.backend.operation('LOGIN', user).subscribe(
       r => {
-        if(r) this.app.user = r['items']
+        if(r) this.app.user = r['items'];
+        this.dialog.closeAll();
       }
     )
   }

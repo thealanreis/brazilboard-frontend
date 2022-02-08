@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { getResolverData } from 'src/app/common/route-utils';
 import { Forum } from 'src/app/models/forum';
-import { ForumService } from 'src/app/services/forum.service';
 
 @Component({
   selector: 'home',
@@ -10,12 +11,10 @@ import { ForumService } from 'src/app/services/forum.service';
 export class HomeComponent implements OnInit {
 
   forums: Forum[] = [];
-  constructor(private forumService: ForumService) { }
+  constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.forumService.operation('GET_FORUMS').subscribe(
-        r => this.forums = r['items']
-    )
+    this.forums = getResolverData(this.route, 'GET_FORUMS');
   }
 
 }

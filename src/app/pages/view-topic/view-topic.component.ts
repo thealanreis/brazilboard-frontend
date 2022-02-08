@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { getResolverData } from 'src/app/common/route-utils';
 import { Topic } from 'src/app/models/topic';
 import { AppService } from 'src/app/services/app.service';
-import { PostService } from 'src/app/services/post.service';
+import { GenericService } from 'src/app/services/generic.service';
 
 @Component({
   selector: 'view-topic',
@@ -17,7 +17,7 @@ export class ViewTopicComponent implements OnInit {
   editMode = false;
   topic: Topic;
   form: FormGroup;
-  constructor(private route: ActivatedRoute, private postService: PostService, private formBuilder: FormBuilder, public app: AppService) { }
+  constructor(private route: ActivatedRoute,  private formBuilder: FormBuilder, public app: AppService, private backend: GenericService) { }
 
   ngOnInit(): void {
     this.topic = getResolverData(this.route, 'GET_POSTS');
@@ -33,7 +33,7 @@ export class ViewTopicComponent implements OnInit {
   }
 
   private getPosts() {
-    this.postService.operation('GET_POSTS').subscribe(
+    this.backend.operation('GET_POSTS').subscribe(
       r => {
         this.topic = r['items'];
         this.acl = r['acl'];
@@ -44,7 +44,7 @@ export class ViewTopicComponent implements OnInit {
   createPost() {
     let post = this.form.getRawValue();
     let operation = this.editMode ? 'UPDATE_POST' : 'CREATE_POST';
-    this.postService.operation(operation, post).subscribe(
+    this.backend.operation(operation, post).subscribe(
       r => {
         this.form.get('content').setValue('');
         this.getPosts();
@@ -62,7 +62,7 @@ export class ViewTopicComponent implements OnInit {
     let index = this.topic.posts.indexOf(p);
     console.log(index);
     let payload = { uuid: p.uuid, ownerUuid: p.owner.uuid };
-    this.postService.operation('DELETE_POST', payload).subscribe(
+    this.backend.operation('DELETE_POST', payload).subscribe(
       (r) => {
         if (r) {
           let index = this.topic.posts.indexOf(p);

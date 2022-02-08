@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginComponent } from './pages/login/login.component';
 import { AppService } from './services/app.service';
 
 @Component({
@@ -12,4 +14,6 @@ export class AppComponent {
   constructor(public app: AppService){
     
   }
+
+
 }
