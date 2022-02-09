@@ -20,7 +20,7 @@
     <tbody>
         <tr *ngFor="let acl of acls; let i = index" [formGroupName]="i">
                 <td>
-                    <p>{{roles[i].name}}</p>
+                    <p>{{roles[i].description}}</p>
                 </td>
                 <td><input type="checkbox" formControlName="read_topic"></td>
                 <td><input type="checkbox" formControlName="write_topic"></td>

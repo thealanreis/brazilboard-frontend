@@ -1,15 +1,15 @@
 <ng-container *ngIf="topic">
     <h2 class="mb-3">{{topic.name}}</h2>
 
-    <div >
-        <post class="mb-3 w-100"[post]="p" *ngFor="let p of topic.posts"></post>
+    <div *ngFor="let p of topic.posts" class="mb-3">
+        <post class="w-100"[post]="p" ></post>
 
-        <!-- <div class="d-flex w-100 justify-content-end mb-2">
-            <button class="btn btn-primary m-1" (click)="editPost(p)"
-                *ngIf="(acl.indexOf('edit_post') > -1 && p.owner.uuid == app.user.uuid) || acl.indexOf('edit_any_post') > -1">Editar</button>
-            <button class="btn btn-primary m-1" (click)="removePost(p)"
-                *ngIf="(acl.indexOf('delete_post') > -1 && p.owner.uuid == app.user.uuid) || acl.indexOf('delete_any_post') > -1">Excluir </button>
-        </div> -->
+        <div class="d-flex w-100 justify-content-end">
+            <a class="btn btn-secondary me-2" (click)="editPost(p)"
+                *ngIf="(acl.indexOf('edit_post') > -1 && p.owner.uuid == app.user?.uuid) || acl.indexOf('edit_any_post') > -1">Editar</a>
+            <a class="btn btn-danger" (click)="removePost(p)"
+                *ngIf="(acl.indexOf('delete_post') > -1 && p.owner.uuid == app.user?.uuid) || acl.indexOf('delete_any_post') > -1">Excluir </a>
+        </div>
     </div>
 
     <ng-container *ngIf="acl.indexOf('write_post') > -1">

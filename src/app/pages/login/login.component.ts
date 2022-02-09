@@ -11,15 +11,15 @@ import { GenericService } from 'src/app/services/generic.service';
 })
 export class LoginComponent implements OnInit {
 
-  formRegister : FormGroup;
-  formLogin : FormGroup;
+  formRegister: FormGroup;
+  formLogin: FormGroup;
   constructor(private formBuilder: FormBuilder, private backend: GenericService, private app: AppService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.initializeForm();
   }
 
-  initializeForm(){
+  initializeForm() {
     this.formRegister = this.formBuilder.group({
       username: [null, Validators.required],
       password: [null, Validators.required],
@@ -32,19 +32,21 @@ export class LoginComponent implements OnInit {
     });
   }
 
-  registerUser(){
+  registerUser() {
     let user = this.formRegister.getRawValue();
     this.backend.operation('REGISTER', user).subscribe(
-      r => {if(r)this.dialog.closeAll()}
+      r => { if (r) this.dialog.closeAll() }
     )
   }
 
-  login(){
+  login() {
     let user = this.formLogin.getRawValue();
     this.backend.operation('LOGIN', user).subscribe(
       r => {
-        if(r) this.app.user = r['items'];
-        this.dialog.closeAll();
+        if (r) {
+          this.app.user = r['items'];
+          this.dialog.closeAll();
+        }
       }
     )
   }
