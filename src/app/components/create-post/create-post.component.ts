@@ -1,4 +1,4 @@
-import { Component, EventEmitter, forwardRef, OnInit, Output } from '@angular/core';
+import { Component, forwardRef, OnInit } from '@angular/core';
 import { ControlValueAccessor, FormBuilder, FormGroup, NG_VALUE_ACCESSOR, Validators } from '@angular/forms';
 import { debounceTime } from 'rxjs';
 import { editorConfig } from 'src/app/common/angular-editor-config';

@@ -1,0 +1,10 @@
+<div class="p-3">   
+    <image-cropper  [imageChangedEvent]="imageChangedEvent" [maintainAspectRatio]="true"
+        [aspectRatio]="4 / 4" format="png" (imageCropped)="imageCropped($event)" [cropperMinWidth]="320"
+        [resizeToWidth]="320"></image-cropper>
+    
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-primary me-3" [mat-dialog-close]="null">Cancelar</button>
+        <button class="btn btn-primary" [mat-dialog-close]="this.croppedImage">Salvar</button>
+    </div>
+</div>

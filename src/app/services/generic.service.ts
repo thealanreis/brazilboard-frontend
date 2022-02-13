@@ -60,6 +60,7 @@ export class GenericService {
             if (route) params = route.params; // Parametros da URL vem do resolver
             else params = this.router.routerState.snapshot.root.children[0].params; // Parametros da URL vem do Router no componente
 
+
             matches.forEach(
                 match => {
                     let cleanMatch = match.replace(/[\<\>]/g, ''); // Remove os parentesis para encontrar o objeto correspondente no dict

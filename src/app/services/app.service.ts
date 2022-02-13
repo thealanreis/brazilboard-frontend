@@ -12,6 +12,7 @@ import { LoginComponent } from "../pages/login/login.component";
 import { MyProfileComponent } from "../pages/my-profile/my-profile.component";
 import { ViewForumComponent } from "../pages/view-forum/view-forum.component";
 import { ViewTopicComponent } from "../pages/view-topic/view-topic.component";
+import { TesteComponent } from "../teste/teste.component";
 import { GenericService } from "./generic.service";
 
 
@@ -47,7 +48,8 @@ export class AppService implements Resolve<any>{
         { path: 'forum/:fuuid/topico/:tuuid/editar-topico', component: CreateTopicComponent, operations: ['GET_TOPIC'] },
         { path: 'forum/:fuuid/topico/:tuuid/criar-post', component: CreatePostComponent },
         { path: 'login', component: LoginComponent },
-        { path: 'meu-perfil', component: MyProfileComponent, operations: ['GET_MY_USER'] }
+        { path: 'meu-perfil', component: MyProfileComponent, operations: ['GET_MY_USER'] },
+        { path: 'teste/:nome', component: TesteComponent, operations: ['TESTE'] },
     ];
 
     constructor(private http: HttpClient, private backend: GenericService, private router: Router) {

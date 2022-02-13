@@ -1,6 +1,8 @@
 <h2>Meu Perfil</h2>
 <form [formGroup]="form">
     <div class="d-flex flex-column gap-1">
+        <cropper-button></cropper-button>
+
         <mat-form-field>
             <mat-label>Usuário</mat-label>
             <input matInput formControlName="username">

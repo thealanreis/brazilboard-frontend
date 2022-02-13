@@ -30,6 +30,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import {MatTabsModule} from '@angular/material/tabs';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MyProfileComponent } from './pages/my-profile/my-profile.component';
+import { ImageCropperModule } from 'ngx-image-cropper';
+import { ImageCropperComponent } from './common/image-cropper/image-cropper.component';
+import { ImageCropperButtonComponent } from './common/image-cropper/image-cropper-button/image-cropper-button.component';
+import { TesteComponent } from './teste/teste.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +53,10 @@ import { MyProfileComponent } from './pages/my-profile/my-profile.component';
     LoremPipe,
     RandomPipe,
     FooterComponent,
-    MyProfileComponent
+    MyProfileComponent,
+    ImageCropperComponent,
+    ImageCropperButtonComponent,
+    TesteComponent
   ],
   imports: [
     BrowserModule,
@@ -64,7 +71,8 @@ import { MyProfileComponent } from './pages/my-profile/my-profile.component';
     MatInputModule,
     MatAutocompleteModule,
     MatTabsModule,
-    MatDialogModule
+    MatDialogModule,
+    ImageCropperModule
   ],
   providers: [
     {provide: APP_INITIALIZER, useFactory: initializeApp, multi: true, deps: [AppService]},
