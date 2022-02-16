@@ -14,7 +14,7 @@ export class HomeComponent implements OnInit {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.forums = getResolverData(this.route, 'GET_FORUMS');
+    this.forums = getResolverData(this.route, 'get-all-forum');
   }
 
 }

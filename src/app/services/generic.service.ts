@@ -24,9 +24,15 @@ export class GenericService {
     operation(operation, payload = null, route = null) {
 
         let url = findInArray(this.routes, 'keyword', operation.toLowerCase())
-        url = this.replaceParameters(url.path, route);
-        if (!payload) return this.callBackend(this.http.get(url));
-        else return this.callBackend(this.http.post(url, payload));
+        let path = this.replaceParameters(url.path, route);
+
+        console.log('Generic Service:' , url, path, payload);
+        return this.callBackend(this.http.request(url.method , path , {body: payload}));
+
+        
+
+        // if (!payload) return this.callBackend(this.http.get(url));
+        // else return this.callBackend(this.http.post(url, payload));
     }
 
     callBackend(observable: Observable<any>) {

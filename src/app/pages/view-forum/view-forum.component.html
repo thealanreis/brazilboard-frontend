@@ -12,8 +12,9 @@
         <h4 class="col-2 text-secondary">Estatísticas</h4>
         <h4 class="col-2 text-secondary">Último Post</h4>
     </div>
-    <div>
-        <topic class="cell" [topic]="t" *ngFor="let t of forum.topics"></topic>
+    <div class="cell" *ngFor="let t of forum.topics">
+        <topic  [topic]="t"></topic>
+        <button class="btn btn-primary" (click)="removeTopic(t)">Excluir</button>
         <!-- <button [routerLink]="['/forum', forum.uuid, 'topico', t.uuid, 'editar-topico']" class="btn btn-primary"
         *ngIf="(t.owner.uuid == app.user.uuid && acl.indexOf('edit_topic') > -1 ) || acl.indexOf('edit_any_topic') > 1">Editar Tópico</button> -->
     </div>

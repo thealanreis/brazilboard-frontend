@@ -1,4 +1,4 @@
-<table class="table table-striped" *ngIf="form" [formGroup]="form">
+<table class="table table-striped" *ngIf="form">
     <thead>
         <tr>
             <th scope="col" [colSpan]="1"></th>
@@ -17,8 +17,9 @@
             <th scope="col">Excluir</th>
         </tr>
     </thead>
+
     <tbody>
-        <tr *ngFor="let acl of acls; let i = index" [formGroupName]="i">
+        <tr *ngFor="let control of getForm(); let i = index" [formGroup]="control">
                 <td>
                     <p>{{roles[i].description}}</p>
                 </td>

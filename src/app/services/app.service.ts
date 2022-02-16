@@ -39,17 +39,17 @@ export class AppService implements Resolve<any>{
 
     user: User;
     routeConfig: RouteConfig[] = [
-        { path: '', component: HomeComponent, operations: ['GET_FORUMS'] },
-        { path: 'criar-forum', component: CreateForumComponent, operations: ['GET_USERS', 'GET_ROLES'] },
-        { path: 'editar-forum/:fuuid', component: CreateForumComponent, operations: ['GET_USERS', 'GET_ROLES', 'GET_FORUM'] },
-        { path: 'forum/:fuuid', component: ViewForumComponent, operations: ['GET_TOPICS'] },
-        { path: 'forum/:fuuid/criar-topico', component: CreateTopicComponent },
-        { path: 'forum/:fuuid/topico/:tuuid', component: ViewTopicComponent, operations: ['GET_POSTS'] },
-        { path: 'forum/:fuuid/topico/:tuuid/editar-topico', component: CreateTopicComponent, operations: ['GET_TOPIC'] },
-        { path: 'forum/:fuuid/topico/:tuuid/criar-post', component: CreatePostComponent },
+        { path: '', component: HomeComponent, operations: ['get-all-forum'] },
+        { path: 'criar-forum', component: CreateForumComponent, operations: ['get-users', 'get-roles'] },
+        { path: 'editar-forum/:forum_uuid', component: CreateForumComponent, operations: ['get-users', 'get-roles', 'get-one-forum'] },
+        { path: 'forum/:forum_uuid', component: ViewForumComponent, operations: ['get-one-forum'] },
+        { path: 'forum/:forum_uuid/criar-topico', component: CreateTopicComponent },
+        { path: 'forum/:forum_uuid/topico/:topic_uuid', component: ViewTopicComponent, operations: ['get-one-topic'] },
+        { path: 'forum/:forum_uuid/topico/:topic_uuid/editar-topico', component: CreateTopicComponent, operations: ['get-one-topic'] },
+        { path: 'forum/:forum_uuid/topico/:topic_uuid/criar-post', component: CreatePostComponent },
         { path: 'login', component: LoginComponent },
-        { path: 'meu-perfil', component: MyProfileComponent, operations: ['GET_MY_USER'] },
-        { path: 'teste/:nome', component: TesteComponent, operations: ['TESTE'] },
+        { path: 'meu-perfil', component: MyProfileComponent, operations: ['get-my-user'] },
+        { path: 'teste/:nome', component: TesteComponent, operations: ['teste'] },
     ];
 
     constructor(private http: HttpClient, private backend: GenericService, private router: Router) {

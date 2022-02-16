@@ -6,7 +6,7 @@
     </mat-form-field>
     
 
-    <create-post formControlName="content"></create-post>
+    <create-post formControlName="first_post_content"></create-post>
 
-    <button (click)="createTopic()" class="btn btn-primary mt-4 mb-2">Criar</button>
+    <button (click)="createTopic()" class="btn btn-primary mt-4 mb-2">{{this.topic.uuid ? 'Salvar' : 'Criar'}}</button>
 </form>

@@ -20,20 +20,20 @@ export class ViewTopicComponent implements OnInit {
   constructor(private route: ActivatedRoute,  private formBuilder: FormBuilder, public app: AppService, private backend: GenericService) { }
 
   ngOnInit(): void {
-    this.topic = getResolverData(this.route, 'GET_POSTS');
-    this.acl = getResolverData(this.route, 'GET_POSTS', true);
+    this.topic = getResolverData(this.route, 'get-one-topic');
+    this.acl = getResolverData(this.route, 'get-one-topic', true);
     this.initializeForm();
   }
 
   initializeForm() {
     this.form = this.formBuilder.group({
       content: [''],
-      uuid: ['']
+      post_uuid: ['']
     })
   }
 
   private getPosts() {
-    this.backend.operation('GET_POSTS').subscribe(
+    this.backend.operation('get-one-topic').subscribe(
       r => {
         this.topic = r['items'];
         this.acl = r['acl'];
@@ -43,7 +43,7 @@ export class ViewTopicComponent implements OnInit {
 
   createPost() {
     let post = this.form.getRawValue();
-    let operation = this.editMode ? 'UPDATE_POST' : 'CREATE_POST';
+    let operation = this.editMode ? 'update-post' : 'create-post';
     this.backend.operation(operation, post).subscribe(
       r => {
         this.form.get('content').setValue('');
@@ -55,16 +55,15 @@ export class ViewTopicComponent implements OnInit {
   editPost(p) {
     this.editMode = true;
     this.form.get('content').setValue(p.content);
-    this.form.get('uuid').setValue(p.uuid);
+    this.form.get('post_uuid').setValue(p.uuid);
   }
 
   removePost(p) {
     let index = this.topic.posts.indexOf(p);
-    console.log(index);
-    let payload = { uuid: p.uuid, ownerUuid: p.owner.uuid };
-    this.backend.operation('DELETE_POST', payload).subscribe(
+    let payload = { post_uuid: p.uuid, ownerUuid: p.owner.uuid };
+    this.backend.operation('delete-post', payload).subscribe(
       (r) => {
-        if (r) {
+        if (r['items']) {
           let index = this.topic.posts.indexOf(p);
           this.topic.posts.splice(index, 1);
         }

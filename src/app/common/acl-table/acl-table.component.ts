@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, forwardRef, Input, OnDestroy } from '@angular/core';
-import { ControlValueAccessor, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { ControlValueAccessor, FormArray, FormBuilder, FormControl, FormGroup, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { debounceTime, startWith, Subscription } from 'rxjs';
 import { ForumACL } from 'src/app/models/forum-acl';
 import { Role } from 'src/app/models/role';
@@ -20,7 +20,7 @@ export class AclTableComponent implements ControlValueAccessor, AfterViewInit, O
 
   acls: ForumACL[];
   @Input() roles: Role[];
-  form: FormGroup;
+  form: FormArray;
   sub: Subscription;
 
   constructor(private formBuilder: FormBuilder) { }
@@ -42,29 +42,34 @@ export class AclTableComponent implements ControlValueAccessor, AfterViewInit, O
       this.roles.forEach(role => this.acls.push(new ForumACL()));
     }
 
-    let forms = []
+    this.form = this.formBuilder.array([])
+    let forms;
     this.acls.forEach(
       (acl, index) => {
-        let fg = this.formBuilder.group({});
-        fg.addControl('read_topic', new FormControl(acl.read_topic));
-        fg.addControl('write_topic', new FormControl(acl.write_topic));
-        fg.addControl('edit_topic', new FormControl(acl.edit_topic));
-        fg.addControl('delete_topic', new FormControl(acl.delete_topic));
-        fg.addControl('write_post', new FormControl(acl.write_post));
-        fg.addControl('edit_post', new FormControl(acl.edit_post));
-        fg.addControl('delete_post', new FormControl(acl.delete_post));
-        fg.addControl('id', new FormControl(acl.id)); // Usado na edição do fórum
-        fg.addControl('role_id', new FormControl(this.roles[index].id)); // Usado na criação do fórum
-        forms.push(fg);
+
+        this.form.push(this.formBuilder.group({
+          read_topic: [acl.read_topic],
+          write_topic: [acl.write_topic],
+          edit_topic: [acl.edit_topic],
+          delete_topic: [acl.delete_topic],
+          write_post: [acl.write_post],
+          edit_post: [acl.edit_post],
+          delete_post: [acl.delete_post],
+          id: [acl.id], // Usado na edição do fórum
+          role_id: [this.roles[index].id] // Usado na criação do fórum
+        }));
       }
     );
 
-    this.form = this.formBuilder.group(forms);
     this.sub = this.form.valueChanges.pipe(debounceTime(80), startWith(this.form.getRawValue())).subscribe(
       val => {
         this.onChange(this.form.getRawValue());
       }
     );
+  }
+
+  getForm() {
+    return this.form.controls as FormGroup[];
   }
 
 }

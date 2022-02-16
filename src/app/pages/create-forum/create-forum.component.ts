@@ -29,11 +29,11 @@ export class CreateForumComponent implements OnInit {
   ngOnInit(): void {
 
     let path = this.route.snapshot.url[0].path;
-    this.users = getResolverData(this.route, 'GET_USERS');
-    this.roles = getResolverData(this.route, 'GET_ROLES');
+    this.users = getResolverData(this.route, 'get-users');
+    this.roles = getResolverData(this.route, 'get-roles');
 
     if (path.startsWith('editar-forum')) {
-      this.forum = getResolverData(this.route, 'GET_FORUM');
+      this.forum = getResolverData(this.route, 'get-one-forum');
       this.moderators = this.forum.moderators;
       removeMultipleFromArray(this.users, this.moderators, 'id');
     }
@@ -63,7 +63,7 @@ export class CreateForumComponent implements OnInit {
 
   createForum() {
     let path = this.route.snapshot.url[0].path;
-    let operation = path.startsWith('editar-forum') ? 'UPDATE_FORUM' : 'CREATE_FORUM'
+    let operation = path.startsWith('editar-forum') ? 'update-forum' : 'create-forum'
     let forum = this.form.getRawValue();
     this.backend.operation(operation, forum).subscribe(
       r => console.log(r)

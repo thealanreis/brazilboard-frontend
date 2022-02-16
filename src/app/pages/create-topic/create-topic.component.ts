@@ -20,9 +20,9 @@ export class CreateTopicComponent implements OnInit {
   ngOnInit(): void {
 
     let path = this.route.routeConfig.path;
-    if (path == 'forum/:fuuid/criar-topico') this.topic = new Topic();
+    if (path == 'forum/:forum_uuid/criar-topico') this.topic = new Topic();
     else {
-      this.topic = getResolverData(this.route, 'GET_TOPIC');
+      this.topic = getResolverData(this.route, 'get-one-topic');
       this.postContent = this.topic.posts[0].content;
     }
     this.initializeForm();
@@ -31,17 +31,17 @@ export class CreateTopicComponent implements OnInit {
   initializeForm() {
     this.form = this.formBuilder.group({
       name: [this.topic.name, Validators.required],
-      content: [this.postContent, Validators.required]
+      first_post_content: [this.postContent, Validators.required]
     });
   }
 
   createTopic() {
     let path = this.route.routeConfig.path;
-    let operation = path == 'forum/:fuuid/criar-topico' ? 'CREATE_TOPIC' : 'UPDATE_TOPIC';
+    let operation = path == 'forum/:forum_uuid/criar-topico' ? 'create-topic' : 'update-topic';
     let topic = this.form.getRawValue();
     this.backend.operation(operation, topic).subscribe(
       r => {
-        if(r) this.router.navigate(['forum', this.route.snapshot.params['fuuid']])
+        if(r) this.router.navigate(['forum', this.route.snapshot.params['forum_uuid']])
       }
     )
   }
